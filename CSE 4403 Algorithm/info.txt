@@ -1,0 +1,4 @@
+1) Time complexity
+2) Sorting -> insertion sort, merge sort, quicksort, randomized sort, heap sort
+3) graph representation, BFS, DFS, Topological sorting, 
+4) strongly connected graph, adjacency list/matrix, 

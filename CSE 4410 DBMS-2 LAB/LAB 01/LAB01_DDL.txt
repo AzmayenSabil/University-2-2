@@ -1,0 +1,66 @@
+-- TASK - 2 (1)
+
+CREATE TABLE Bank
+(
+  Branch_name VARCHAR2(10),
+  branch_id INT,
+  no_of_accounts INT,
+  PRIMARY KEY (branch_id)
+);
+
+CREATE TABLE address
+(
+  address_id INT,
+  district VARCHAR2(10),
+  street VARCHAR2(10),
+  house_no VARCHAR2(10),
+  flat_no VARCHAR2(10),
+  PRIMARY KEY (address_id)
+);
+
+CREATE TABLE Customer
+(
+  name VARCHAR2(10),
+  dob VARCHAR2(10),
+  occupation VARCHAR2(10),
+  photograph VARCHAR2(10),
+  signature VARCHAR2(10),
+  salary INT,
+  branch_id INT,
+  cid INT,
+  status VARCHAR2(10),
+  address_id INT,
+  PRIMARY KEY (cid, branch_id),
+  FOREIGN KEY (address_id) REFERENCES address(address_id),
+  FOREIGN KEY (branch_id) REFERENCES bank(branch_id)
+);
+
+
+-- TASK - 2 (2)
+
+SELECT branch_name, COUNT(cid) AS no_of_acocunts
+FROM (SELECT * FROM bank, customer WHERE bank.branch_id = customer.branch_id)
+GROUP BY branch_name
+ORDER BY no_of_accounts ASC;
+
+
+-- TASK - 2 (3)
+
+SELECT name, dob, salary FROM customer, address WHERE customer.address_id = address.address_id 
+AND address.district IN ('DHAKA','KHULNA');
+
+
+-- TASK - 2 (4)
+
+
+
+
+
+
+-- TASK - 4 
+
+
+we can think about table of two football teams and they play in EPL. 
+natural join : they belong to england
+left outer join: they belong to team A or england
+right outer join: they belong to team B or england

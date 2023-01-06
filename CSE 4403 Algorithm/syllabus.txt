@@ -1,0 +1,77 @@
+MID >>
+
+Asymptotic Complexity: (done)
+	Complexity of Algorithms, 
+	Growth of functions
+
+Sorting: 
+	Insertion Sort, 
+	Merge Sort, 
+	Heap Sort, 
+	Quick Sort, 
+	Randomized Sort
+
+Graph Theory: 
+	Breadth-First Search,
+	Depth-First Search,
+	Topological Sort 
+
+Shortest Paths: Single Source Shortest Path Problems; 
+	Dijkstra’s Algorithm, 
+	floyd warshall algorithm 
+
+SCC: strongly connected graph 
+adjacency list/matrix
+
+DP:
+	SHortest path,
+	subset sum,
+	LCS, (done)
+	LIS , (done)
+	Fibonacci, (done)
+	factorial, (done)
+	knapsack 0-1, 
+	coin change(2 variations: infinite supply, given set),
+	Travelling Salesman problem,
+	Bitmask,
+	Matrix chain multiplication
+
+
+
+FINAL >>
+
+Divide & Conquer: 3 methods.
+Divide and conquer
+	• Count of range sum
+	• Count of smaller number after self
+	• Reverse pair
+
+Randomization: Matrix Multiplication; Randomized Median; Universal and Perfect Hashing
+
+Advanced Dynamic Programming + Greedy: 
+	Advanced Dynamic Programming> 
+		All-pairs Shortest Paths;
+		Minimum spanning tree;
+		Kruskal's algo
+		Prim's algo
+
+Master method
+Recursive method
+
+Max flow:
+	Edmond karp
+	Ford Fulkerson	
+	Dinic
+
+String: 
+	KMP (done)
+	Z algo (done)
+	Rabin Krap (done)
+	Hashing 
+	LPS array building
+
+Computational Complexity: P, NP, NP- HARD
+
+Stable marriage problem
+	Gale Shapley Algorithm
+

@@ -1,0 +1,66 @@
+-- TASK 1
+
+CREATE OR REPLACE FUNCTION ordered_food_items(customer_id INT, franchise_id INT)
+RETURN VARCHAR2;
+
+IS
+
+number_of_ordered_foods INT := 0;
+
+BEGIN
+
+	SELECT COUNT(*) INTO number_of_ordered_foods FROM Customer_Visit_Franchise
+	JOIN customer_order_food
+	ON customer_id = customer_order_food.customer_id;
+	JOIN franchise_offer_food
+	ON franchise_id = franchise_offer_food.franchise_id;	
+  		
+
+	DBMS_OUTPUT.PUT_LINE(‘Number of ordered food items: ’ || number_of_ordered_foods);
+
+	RETURN 'Succecssful';
+
+END;
+
+/
+
+
+-- TASK 2 - part 1
+
+CREATE PROCEDURE show_stuffs(branch_id INT, franchise_id INT) IS 
+name staff%rowtype;
+id staff%rowtype;
+phone staff%rowtype;
+   
+   BEGIN
+		
+		SELECT  staff.id, staff.name, staff.Phone INTO
+		id, name, phone
+		FROM 
+		Branch, Staff
+		WHERE branch_id = Branch.id AND franchise_id = Branch.franchise_id AND staff.Branch = Branch.id AND (staff.shift = 'morning' OR staff.shift = 'noon') AND Branch.Operating_time = 'day';    
+
+
+		dbms_output.put_line(id || ' ' || name || ' ' || phone);
+
+
+   END;
+/
+
+
+-- TASK 2 - part 2
+
+CREATE PROCEDURE update_status(branch_id INT) IS 
+count INT;
+
+
+   BEGIN
+		
+		    
+
+
+		
+
+   END;
+/
+

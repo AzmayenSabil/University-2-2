@@ -1,0 +1,20 @@
+IUT-mail for username
+j@malpur420J
+
+---------------------------------------------------------------------------
+
+system
+jamalpur420J
+
+pluggable database name : xepdb1
+to login to pluggable db>> username :system@xepdb1 
+			   pass     :same
+
+Oracle Enterprise Manager Database Express URL: https://localhost:5500/em
+
+
+New windows user : AzmayenSabil
+pass : jamalpur420J
+
+new user of pdb: USER2122, iutcse
+new user of pdb: sabil, 1234

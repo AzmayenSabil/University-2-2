@@ -1,0 +1,101 @@
+-- TASK A
+
+
+CREATE OR REPLACE FUNCTION evaluate_status(customer_id INT)
+RETURN VARCHAR2;
+
+IS
+
+status VARCHAR2(10) := "";
+balance NUMBER := 0;
+major_allegation INT := 0;
+minor_allegation INT := 0;
+
+BEGIN
+
+	SELECT SUM(Accounts.Current_balance) AS balance INTO balance
+	FROM Customers, accounts WHERE Customers.ID = customer_id;
+
+	SELECT COUNT(Defaulters.allegation_type) AS allegations INTO major_allegation
+	FROM Customers, Defaulters WHERE 
+	Customers.ID = customer_id AND 
+	Defaulters.allegation_type = "major"
+
+	SELECT COUNT(Defaulters.allegation_type) AS allegations INTO minor_allegation
+	FROM Customers, Defaulters WHERE 
+	Customers.ID = customer_id AND 
+	Defaulters.allegation_type = "minor";
+
+
+
+	IF balance > 200000 AND major_allegation == 0 AND minor_allegation == 0 THEN
+		status := "VIP";
+
+	ELSIF balance > 40000 AND balance < 200000 AND
+	major_allegation == 0 THEN
+		status := "IMPORTANT"; 
+
+	ELSIF balance > 10000 AND balance < 40000 AND
+	major_allegation == 1 THEN
+		status := "ORDINARY";
+
+	ELSIF major_allegation >= 3 AND minor_allegation >= 5 THEN
+		status := "CRIMINAL";
+
+	END IF;
+
+
+	DBMS_OUTPUT.PUT_LINE(‘Status: ’ || status);
+
+	RETURN 'Succecssful';
+
+END;
+
+/
+
+-- TASK B
+
+CREATE OR REPLACE FUNCTION update_balance(acc_no INT)
+RETURN VARACHAR;
+
+IS
+
+updated_balance INT := 0;
+graceP INT := 0;
+date_dif INT := 0;
+lastDtIgiven DATE := '';
+requiredInterest INT := 0;
+
+BEGIN
+	
+	SELECT lastDtIGiven INTO lastDtIgiven FROM
+	Accounts WHERE AccNo = acc_no;
+
+
+	SELECT MONTHS_BETWEEN( TO_DATE(’02-02-2015’,’DD-MM-YYYY’),
+	TO_DATE(’12-01-2014’,’DD-MM-YYYY’) ) AS "Months" INTO date_dif FROM DUAL;
+
+	IF date_dif >= 1 AND date_dif <= 3 THEN
+		graceP := 0;
+	ElSIF date_dif > 3 AND date_dif <=6 THEN
+		graceP := 1;
+	ENDIF;
+
+	SELECT Irate INTO requiredInterest FROM Acc_type WHERE accountType = Acc_type.ID AND graceP = Acc_type.GraceP;
+
+	SELECT current_balace*requiredInterest INTO updated_balance FROM accounts WHERE accounts.acc_no = acc_no;
+
+	UPDATE accounts
+	SET accounts.lastDtIgiven = lastDtIgiven
+	WHERE accounts.acc_no = acc_no;
+
+
+	DBMS_OUTPUT.PUT_LINE(‘Updated Balance: ’ || updated_balance);
+
+
+
+END;
+/
+
+
+

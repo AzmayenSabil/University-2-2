@@ -1,0 +1,7 @@
+database triggers
+
+> DML trigger
+> DDL trigger
+
+
+DML trigger:  

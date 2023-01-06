@@ -1,0 +1,139 @@
+MID >>
+
+Asymptotic Complexity: 
+	Complexity of Algorithms, 
+	Growth of functions
+
+Sorting: 
+	Insertion Sort, (done)
+	Merge Sort, (done)
+	Heap Sort, (done)
+	Quick Sort (done)
+
+Graph Theory: 
+	Breadth-First Search, (done)
+	Depth-First Search, (done)
+	Topological Sort (done)
+
+Shortest Paths: Single Source Shortest Path Problems; 
+	Dijkstra’s Algorithm, (done)
+	floyd warshall algorithm (done)
+
+SCC: strongly connected graph (done)
+adjacency list/matrix
+
+DP: 
+	shortest path,
+	subset sum,
+	LCS, 
+	LIS , 
+	Fibonacci, 
+	factorial, 
+	knapsack 0-1, 
+	coin change
+
+
+
+FINAL >>
+
+Divide & Conquer: 3 methods.
+Divide and conquer
+	• Count of range sum
+	• Count of smaller number after self
+	• Reverse pair
+Minimum spanning tree
+Kruskal's algo
+Prim's algo
+Master method
+Recursive method
+Maximum flow
+Rabin karp
+KMP algo
+Lps array building
+Bit mask DP
+Matrix chain multiplication
+
+//
+
+Divide & Conquer: 3 methods.
+
+Randomization: Matrix Multiplication; Randomized Median; Universal and Perfect Hashing
+Advanced Dynamic Programming + Greedy: Advanced Dynamic Programming; All-pairs Shortest Paths; Minimum Spanning Tree
+Incremental Improvement: Max Flow; Matching
+String Matching: The Rabin-Karp Algorithm, Knuth-Morris-Pratt Algorithm, Z
+Computational Complexity: P, NP, NP- HARD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------
+
+Dynamic Programming: Memoization, Bottom-up: Fibonacci, Shortest
+Paths; Steps of Solving Dynamic Programming Problem;
+String/Sequence, Longest Common Subsequence, Knapsack Problem, Pseudo-
+polynomial Time, Coin Change;
+
+--------------------
+
+Asymptotic complexity
+
+Sorting
+Heap 
+Insertion 
+Quick
+Merge
+
+Graph
+Bfs
+Dfs
+Shortest path prob
+Dijkstra 
+Floyd Warshall
+SCC
+
+Dp :
+Factorial
+Fibonacchis 
+Longest common subsequence(lcs)
+Longest Increasing subsequence(lis)
+Coin change prob dp
+
+0-1 knapsack prob
+subset sum
+matrix chain multiplication
+unknown
+bitmask

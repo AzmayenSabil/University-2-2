@@ -1,0 +1,81 @@
+CREATE TABLE food_item (
+	
+	id INT PRIMARY KEY,
+	name VARCHAR2(10),
+	franchise_ID INT,
+	calorie INT,
+	count INT,
+	price INT,
+	food_type VARCHAR2(10)
+	FOREIGN KEY (franchise_ID) REFERENCES franchise_branch(franchise_ID)
+
+);
+
+
+CREATE TABLE franchise_branch(
+
+	branch_ID INT PRIMARY KEY
+	
+);
+
+
+CREATE TABLE franchise(
+	
+	franchise_ID INT PRIMARY KEY,
+	branch_ID INT,
+	food_ID INT,
+	FOREIGN KEY (branch_ID) REFERENCES franchise_branch(branch_ID),
+	FOREIGN KEY (customer_ID) REFERENCES customers(customer_ID),
+	FOREIGN KEY (foood_id) REFERENCES food_item(id)
+
+);
+
+
+CREATE TABLE stuff(
+	
+	name VARCHAR2(15),
+	stuff_ID INT PRIMARY KEY,
+	branch_ID INT,
+	phone_number VARCHAR2(15),
+	address VARCHAR2(15),
+	shift_info VARCHAR2(10),
+	salary INT,
+	FOREIGN KEY (branch_ID) REFERENCES franchise_branch(branch_ID), 
+
+);
+
+
+
+CREATE TABLE food_chain(
+
+	franchise_ID INT,
+	customer_ID INT PRIMARY KEY,
+	FOREIGN KEY (franchise_ID) REFERENCES franchise(franchise_ID)
+
+);
+
+
+
+CREATE TABLE customers(
+	
+	name VARCHAR2(10),
+	customer_ID INT,
+	age INT,
+	address VAVRCHAR2(15),
+	number_of_visits INT,
+	preferred_foodtype VARCHAR2(12),
+	blood_group VARCHAR2(3)
+	FOREIGN KEY (customer_ID) REFERENCES food_chain(customer_ID)
+
+);
+
+
+
+
+--//// QUERIES
+
+
+
+
+
+

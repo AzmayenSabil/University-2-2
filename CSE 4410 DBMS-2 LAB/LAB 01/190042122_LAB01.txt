@@ -1,0 +1,353 @@
+
+SQL*Plus: Release 18.0.0.0.0 - Production on Fri Nov 26 08:14:30 2021
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+Enter user-name: sabil
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: sabil@xepdb1
+Enter password:
+Last Successful login time: Fri Aug 20 2021 00:41:32 +06:00
+
+Connected to:
+Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+
+SQL> disc
+Disconnected from Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+SQL> connect
+Enter user-name: system@xepdb1
+Enter password:
+ERROR:
+ORA-28002: the password will expire within 1 days
+
+
+Connected.
+SQL> CREATE TABLESPACE myspace DATAFILE 'myspace_datafile.dbf' SIZE 2m;
+
+Tablespace created.
+
+SQL> ALTER USER sabil DEFAULT TABLESPACE myspace;
+
+User altered.
+
+SQL> ALTER USER sabil QUOTA UNLIMITED ON myspace;
+
+User altered.
+
+SQL> disc
+Disconnected from Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+SQL> connect
+Enter user-name: sabil@xepdb1
+Enter password:
+Connected.
+SQL> SELECT TABLE_NAME, TABLESPACE_NAME FROM USER_TABLES WHERE TABLESPACE_NAME IN ('NAME_OF_TABLESPACE');
+
+no rows selected
+
+SQL>
+SQL>
+SQL> SELECT TABLE_NAME, TABLESPACE_NAME FROM USER_TABLES WHERE TABLESPACE_NAME IN ('NAME_OF_TABLESPACE');
+
+no rows selected
+
+SQL> SELECT TABLE_NAME, TABLESPACE_NAME FROM USER_TABLES WHERE TABLESPACE_NAME IN ('MYSPACE');
+
+no rows selected
+
+SQL> CREATE TABLE t1(
+  2     id INT,
+  3     c1 VARCHAR2(32)
+  4  ) TABLESPACE myspace;
+
+Table created.
+
+SQL> CREATE TABLE t1(
+  2     id INT,
+  3     c1 VARCHAR2(32)
+  4  asdasd
+  5  ;
+asdasd
+*
+ERROR at line 4:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE t2(
+  2  id INT;
+id INT
+     *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE t2(
+  2  id INT;
+id INT
+     *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE t2(
+  2  id INT,
+  3  c1 VARCHAR2(32) ) TABLESPACE myspace;
+
+Table created.
+
+SQL> CREATE TABLE t3(
+  2  id INT,
+  3  c1 VARCHAR2(32) ) TABLESPACE myspace;
+
+Table created.
+
+SQL> CREATE TABLE t4(
+  2  id INT,
+  3  c1 VARCHAR2(32) ) TABLESPACE myspace;
+
+Table created.
+
+SQL> disc
+Disconnected from Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+SQL> connect
+Enter user-name: system@xepdb1
+Enter password:
+ERROR:
+ORA-28002: the password will expire within 1 days
+
+
+Connected.
+SQL> CREATE TABLESPACE myspace2 DATAFILE 'myspace_datafile2.dbf' SIZE 2m;
+
+Tablespace created.
+
+SQL> ALTER USER sabil DEFAULT TABLESPACE myspace2;
+
+User altered.
+
+SQL> ALTER USER sabil QUOTA UNLIMITED ON myspace2;
+
+User altered.
+
+SQL> disc
+Disconnected from Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+SQL> connect
+Enter user-name: sabil@xepdb1
+Enter password:
+Connected.
+SQL> ALTER TABLE t4 MOVE TABLESPACE myspace2;
+
+SQL> select TABLE_NAME, TABLESPACE_NAME FROM USER_TABLES WHERE TABLESPACE_NAME IN ('MYSPACE');
+
+TABLE_NAME
+--------------------------------------------------------------------------------
+TABLESPACE_NAME
+------------------------------
+T2
+MYSPACE
+
+T1
+MYSPACE
+
+T3
+MYSPACE
+
+
+SQL> select TABLE_NAME, TABLESPACE_NAME FROM USER_TABLES WHERE TABLESPACE_NAME IN ('MYSPACE2');
+
+TABLE_NAME
+--------------------------------------------------------------------------------
+TABLESPACE_NAME
+------------------------------
+T4
+MYSPACE2
+
+
+
+SQL> CREATE TABLE Bank
+  2  (
+  3    Branch_name VARCHAR2(10),
+  4    branch_id INT,
+  5    no_of_accounts INT,
+  6    PRIMARY KEY (branch_id)
+  7  );
+
+Table created.
+
+SQL> CREATE TABLE address
+  2  (
+  3    address_id INT,
+  4    district VARCHAR2(10),
+  5    street VARCHAR2(10),
+  6    house_no VARCHAR2(10),
+  7    flat_no VARCHAR2(10),
+  8    PRIMARY KEY (address_id)
+  9  );
+
+Table created.
+
+SQL> CREATE TABLE Customer
+  2  (
+  3    name INT VARCHAR2(10),
+  4    dob INT VARCHAR2(10),
+  5    occupation VARCHAR2(10),
+  6    photograph VARCHAR2(10),
+  7    signature VARCHAR2(10),
+  8    salary INT,
+  9    branch_id INT,
+ 10    cid INT,
+ 11    status VARCHAR2(10),
+ 12    address_id INT,
+ 13    address_id INT,
+ 14    PRIMARY KEY (cid, branch_id),
+ 15    FOREIGN KEY (address_id) REFERENCES address(address_id),
+ 16    FOREIGN KEY (branch_id) REFERENCES bank(branch_id)
+ 17  );
+  name INT VARCHAR2(10),
+           *
+ERROR at line 3:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE Customer
+  2  (
+  3    name INT VARCHAR2(10),
+  4    dob INT VARCHAR2(10),
+  5    occupation VARCHAR2(10),
+  6    photograph VARCHAR2(10),
+  7    signature VARCHAR2(10),
+  8    salary INT,
+  9    branch_id INT,
+ 10    cid INT,
+ 11    status VARCHAR2(10),
+ 12    address_id INT,
+ 13    address_id INT,
+ 14    PRIMARY KEY (cid, branch_id),
+ 15    FOREIGN KEY (address_id) REFERENCES address(address_id),
+ 16    FOREIGN KEY (branch_id) REFERENCES bank(branch_id)
+ 17    FOREIGN KEY (address_id) REFERENCES address(address_id),
+ 18
+SQL> CREATE TABLE Customer
+  2  (
+  3    name VARCHAR2(10),
+  4    dob VARCHAR2(10),
+  5    occupation VARCHAR2(10),
+  6    photograph VARCHAR2(10),
+  7    signature VARCHAR2(10),
+  8    salary INT,
+  9    branch_id INT,
+ 10    cid INT,
+ 11    status VARCHAR2(10),
+ 12    address_id INT,
+ 13    address_id INT,
+ 14    PRIMARY KEY (cid, branch_id),
+ 15    FOREIGN KEY (address_id) REFERENCES address(address_id),
+ 16    FOREIGN KEY (branch_id) REFERENCES bank(branch_id)
+ 17  );
+  address_id INT,
+  *
+ERROR at line 13:
+ORA-00957: duplicate column name
+
+
+SQL>
+SQL> CREATE TABLE Customer
+  2  (
+  3    name VARCHAR2(10),
+  4    dob VARCHAR2(10),
+  5    occupation VARCHAR2(10),
+  6    photograph VARCHAR2(10),
+  7    signature VARCHAR2(10),
+  8    salary INT,
+  9    branch_id INT,
+ 10    cid INT,
+ 11    status VARCHAR2(10),
+ 12    address_id INT,
+ 13    PRIMARY KEY (cid, branch_id),
+ 14    FOREIGN KEY (address_id) REFERENCES address(address_id),
+ 15    FOREIGN KEY (branch_id) REFERENCES bank(branch_id)
+ 16  );
+
+Table created.
+
+
+---------------------------------
+
+-- TASK - 2 (1)
+
+CREATE TABLE Bank
+(
+  Branch_name VARCHAR2(10),
+  branch_id INT,
+  no_of_accounts INT,
+  PRIMARY KEY (branch_id)
+);
+
+CREATE TABLE address
+(
+  address_id INT,
+  district VARCHAR2(10),
+  street VARCHAR2(10),
+  house_no VARCHAR2(10),
+  flat_no VARCHAR2(10),
+  PRIMARY KEY (address_id)
+);
+
+CREATE TABLE Customer
+(
+  name VARCHAR2(10),
+  dob VARCHAR2(10),
+  occupation VARCHAR2(10),
+  photograph VARCHAR2(10),
+  signature VARCHAR2(10),
+  salary INT,
+  branch_id INT,
+  cid INT,
+  status VARCHAR2(10),
+  address_id INT,
+  PRIMARY KEY (cid, branch_id),
+  FOREIGN KEY (address_id) REFERENCES address(address_id),
+  FOREIGN KEY (branch_id) REFERENCES bank(branch_id)
+);
+
+
+-- TASK - 2 (2)
+
+SELECT branch_name, COUNT(cid) AS no_of_acocunts
+FROM (SELECT * FROM bank, customer WHERE bank.branch_id = customer.branch_id)
+GROUP BY branch_name
+ORDER BY no_of_accounts ASC;
+
+
+-- TASK - 2 (3)
+
+SELECT name, dob, salary FROM customer, address WHERE customer.address_id = address.address_id 
+AND address.district IN ('DHAKA','KHULNA');
+
+
+-- TASK - 2 (4)
+
+
+
+
+
+
+-- TASK - 3 
+
+
+we can think about table of two football teams and they play in EPL. 
+natural join : they belong to england
+left outer join: they belong to team A or england
+right outer join: they belong to team B or england
+
+
+

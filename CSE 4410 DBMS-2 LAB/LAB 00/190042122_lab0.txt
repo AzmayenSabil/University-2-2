@@ -1,0 +1,253 @@
+/////TASK/ ------------ 1
+
+SQL> create table Citizen(
+  2  NID INT primary key,
+  3  Name VARCHAR2(15),
+  4      City VARCHAR2(10), 
+  5      Age INT,
+  6     Occupation VARCHAR2(10),
+  7     Gender VARCHAR2(7),
+  8      Salary INT);
+create table Citizen(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+SQL> drop table Citizen;
+
+Table dropped.
+
+SQL> create table Citizen(
+  2  NID INT primary key,
+  3  Name VARCHAR2(15),
+  4  City VARCHAR2(10),
+  5  Age INT,
+  6  Occupation VARCHAR2(10),
+  7  Gender VARCHAR2(7),
+  8  Salary INT);
+
+Table created.
+
+SQL> Create Table phonebook(
+  2  NID INT,
+  3  Phone VARCHAR2(11),
+  4  Constraint NID_fk foreign key (NID) references Citizen(NID)
+  5  );
+
+Table created.
+
+SQL> insert into citizen values(1,'sabil','dhaka',28,'developer','Male',50000);
+
+1 row created.
+
+SQL> insert into citizen values(2,'Azam','khulna',25,'doctor','Male',100000);
+
+1 row created.
+
+SQL> insert into citizen values(3,'anas','ctg',24,'Engineer','Male',75000);
+
+1 row created.
+
+SQL> insert into citizen values(4,'fayek','barishal',18,'pilot','Male',150000);
+
+1 row created.
+
+SQL> insert into citizen values(5,'fahim','khulna',20,'banker','Male',60000);
+
+1 row created.
+
+SQL> insert into citizen values(6,'paras','dhaka',21,'J. developer','Male',20000);
+insert into citizen values(6,'paras','dhaka',21,'J. developer','Male',20000)
+                                                *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."CITIZEN"."OCCUPATION" (actual:
+12, maximum: 10)
+
+
+SQL> insert into citizen values(7,'azmayen','natore',23,'Teacher','Male',35000);
+
+1 row created.
+
+SQL> insert into citizen values(6,'paras','dhaka',21,'J.developer','Male',20000);
+insert into citizen values(6,'paras','dhaka',21,'J.developer','Male',20000)
+                                                *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."CITIZEN"."OCCUPATION" (actual:
+11, maximum: 10)
+
+
+SQL> insert into citizen values(6,'paras','dhaka',21,'developer','Male',20000);
+
+1 row created.
+
+SQL> select * from citizen;
+
+       NID NAME            CITY              AGE OCCUPATION GENDER      SALARY
+---------- --------------- ---------- ---------- ---------- ------- ----------
+         1 sabil           dhaka              28 developer  Male         50000
+         2 Azam            khulna             25 doctor     Male        100000
+         3 anas            ctg                24 Engineer   Male         75000
+         4 fayek           barishal           18 pilot      Male        150000
+         5 fahim           khulna             20 banker     Male         60000
+         7 azmayen         natore             23 Teacher    Male         35000
+         6 paras           dhaka              21 developer  Male         20000
+
+7 rows selected.
+
+SQL> insert into phonebook values (1,'01833352501');
+
+1 row created.
+
+SQL> insert into phonebook values (1,'01521846554');
+
+1 row created.
+
+SQL> insert into phonebook values (2,'01454545445');
+
+1 row created.
+
+SQL> insert into phonebook values (3,'01894656545');
+
+1 row created.
+
+SQL> insert into phonebook values (3,'01442224878');
+
+1 row created.
+
+SQL> insert into phonebook values (3,'01545132564');
+
+1 row created.
+
+SQL> insert into phonebook values (4,'01545254551');
+
+1 row created.
+
+SQL> insert into phonebook values (5,'01835215501');
+
+1 row created.
+
+SQL> insert into phonebook values (6,'01845454128');
+
+1 row created.
+
+SQL> insert into phonebook values (7,'01745478878');
+
+1 row created.
+
+SQL> select * from phonebook;
+
+       NID PHONE
+---------- -----------
+         1 01833352501
+         1 01521846554
+         2 01454545445
+         3 01894656545
+         3 01442224878
+         3 01545132564
+         4 01545254551
+         5 01835215501
+         6 01845454128
+         7 01745478878
+
+10 rows selected.
+
+///////TASK/------------2
+
+SQL> select * from citizen where name LIKE %m or name like %as;
+select * from citizen where name LIKE %m or name like %as
+                                      *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> select * from citizen where name LIKE '%m' or name like '%as';
+
+       NID NAME            CITY              AGE OCCUPATION GENDER      SALARY
+---------- --------------- ---------- ---------- ---------- ------- ----------
+         2 Azam            khulna             25 doctor     Male        100000
+         3 anas            ctg                24 Engineer   Male         75000
+         5 fahim           khulna             20 banker     Male         60000
+         6 paras           dhaka              21 developer  Male         20000
+
+
+/////TASK/--------------3
+
+SQL> select * from citizen where salary > (select avg(salary) from citizen);
+
+       NID NAME            CITY              AGE OCCUPATION GENDER      SALARY
+---------- --------------- ---------- ---------- ---------- ------- ----------
+         2 Azam            khulna             25 doctor     Male        100000
+         3 anas            ctg                24 Engineer   Male         75000
+         4 fayek           barishal           18 pilot      Male        150000
+
+
+
+/////TASK/---------------4
+
+SQL> select COUNT(NID) as Number_of_citizens from citizen group by city;
+
+NUMBER_OF_CITIZENS
+------------------
+                 2
+                 2
+                 1
+                 1
+                 1
+
+
+/////TASK/---------------5
+
+SQL> CREATE OR REPLACE VIEW Citizen_Salary_info AS
+  2  SELECT NID,occupation,salary FROM Citizen;
+
+View created.
+
+SQL> select * from Citizen_salary_info;
+
+       NID OCCUPATION     SALARY
+---------- ---------- ----------
+         1 developer       50000
+         2 doctor         100000
+         3 Engineer        75000
+         4 pilot          150000
+         5 banker          60000
+         7 Teacher         35000
+         6 developer       20000
+
+7 rows selected.
+
+SQL> select SUM(salary) from citizne group by occupation;
+select SUM(salary) from citizne group by occupation
+                        *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select SUM(salary) from citizen group by occupation;
+
+SUM(SALARY)
+-----------
+     100000
+      35000
+      60000
+      70000
+      75000
+     150000
+
+6 rows selected.
+
+SQL> select occupation,SUM(salary) from citizen group by occupation;
+
+OCCUPATION SUM(SALARY)
+---------- -----------
+doctor          100000
+Teacher          35000
+banker           60000
+developer        70000
+Engineer         75000
+pilot           150000
+
+6 rows selected.
+
+
+////////////////END//////////////////
